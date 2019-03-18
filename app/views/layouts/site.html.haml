@@ -1,0 +1,43 @@
+!!!
+%html
+  %head
+    %meta{:content => "text/html; charset=UTF-8", "http-equiv" => "Content-Type"}/
+    %title CommentBox
+    = csrf_meta_tags
+    = stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track': 'reload'
+    = javascript_include_tag 'application', 'data-turbolinks-track': 'reload'
+    / Google Fonts
+    = stylesheet_link_tag 'application', 'http://fonts.googleapis.com/css?family=Raleway:400,700'
+    / Favicon
+    / assets/images/favicon.ico
+    = favicon_link_tag 'favicon.ico'
+  %body
+    #sidebar
+      #logo
+        = link_to root_path do
+          = image_tag "logo.jpg"
+      %ul
+        %li.category Posts Section
+        %li= link_to "About", about_path
+        %li= link_to "Posts", posts_path
+        %li= link_to "Trash", trash_path
+      - if !user_signed_in?
+        %p.sign_in= link_to "Admin Login", new_user_session_path
+    #main_content
+      #header
+        / Header Nav
+        - if current_page?(posts_path)
+          %p All Posts
+        - elsif current_page?(about_path)
+          %p About
+        - else
+          = link_to "Back to All Posts", posts_path
+        / Header Link Buttons
+        - if user_signed_in?
+          .buttons
+            %button.button= link_to "New Post", new_post_path
+            %button.button= link_to('Logout', destroy_user_session_path, :method => :delete)
+      / Flash Message
+      - flash.each do |name, msg|
+        = content_tag(:div, msg, class: "alert")
+      = yield

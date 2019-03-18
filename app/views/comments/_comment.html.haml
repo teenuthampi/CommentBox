@@ -1,0 +1,16 @@
+.comment.clearfix
+  .comment_content
+    %p.comment_name
+      %strong= comment.user_name
+    %p.comment_body= comment.content
+    %p.comment_time
+      = time_ago_in_words(comment.created_at)
+      Ago
+  - if user_signed_in?
+    %p
+      = link_to 'Delete', [comment.post, comment], |
+        method: :delete,                           |
+        class: "button",                           |
+        data: { confirm: 'Are you sure?' }         |
+    %p
+      = link_to 'Trash', comment_trash_path(comment.id),class: "button"

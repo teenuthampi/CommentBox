@@ -1,0 +1,17 @@
+/ Post Index Page
+- @posts.each do |post|
+  .post_wrapper
+    %h2.title= link_to post.title, post
+    %p.date
+      = post.created_at.strftime("%B %d, %Y")
+      - if user_signed_in?
+        = link_to 'Restore', restore_path(post.id), |
+          class: "button"                           |
+- @comments.each do |post|
+  .post_wrapper
+    %h2.title= link_to post.content
+    %p.date
+      = post.created_at.strftime("%B %d, %Y")
+      - if user_signed_in?
+        = link_to 'Restore', comment_restore_path(post.id), |
+          class: "button"                                   |

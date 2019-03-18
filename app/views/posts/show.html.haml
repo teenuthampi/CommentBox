@@ -1,0 +1,21 @@
+/ Post Show Page
+#post_content
+  %h1.title
+    = @post.title
+  %p.date
+    Submitted #{time_ago_in_words(@post.created_at)} Ago
+    - if user_signed_in?
+      |#{link_to 'Edit', edit_post_path(@post),class: "button"} |
+      #{link_to 'Delete', post_path(@post), method: :delete, data: { confirm: 'Are you sure?' },class: "button"} |
+      #{link_to 'Trash', trashposts_path(@post.id),class: "button"}
+  %p.body= @post.body
+  / Post Show Page
+  #comments
+    / Show Comments
+    %h2
+      = @post.comments.active_comments.count
+      Comments
+    = render @post.comments.active_comments
+    / New Comment
+    %h3 Add a comment:
+    = render "comments/form"
