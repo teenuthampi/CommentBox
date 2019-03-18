@@ -15,6 +15,7 @@
 https://github.com/teenuthampi/CommentBox.git
 cd CommentBox
 bundle
+rails db:drop db:create db:migrate 
 ```
 
 ### Testing
@@ -23,10 +24,6 @@ bundle
 bundle exec rspec
 ```
 
-### Integration Testing
-```
-bundle exec cucumber
-```
 
 ### Running Application
 
