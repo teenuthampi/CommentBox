@@ -1,24 +1,38 @@
-# README
+# Post Commenting 
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
+## Getting Started
 
-Things you may want to cover:
+### Requirements
 
-* Ruby version
+1. Ruby 2.4.1
+2. MySQL 
+3. Rails 5
 
-* System dependencies
+### Setup
 
-* Configuration
 
-* Database creation
+```
+https://github.com/teenuthampi/CommentBox.git
+cd CommentBox
+bundle
+```
 
-* Database initialization
+### Testing
 
-* How to run the test suite
+```
+bundle exec rspec
+```
 
-* Services (job queues, cache servers, search engines, etc.)
+### Integration Testing
+```
+bundle exec cucumber
+```
 
-* Deployment instructions
+### Running Application
 
-* ...
+```
+bundle exec rails s
+```
+
+The app should be available in development at http://localhost:3000.
+
